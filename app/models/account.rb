@@ -8,4 +8,7 @@ class Account < ActiveRecord::Base
   def no_bucket
     self.buckets.where('name = ?', "NO BUCKET").first
   end
+  def transactions
+    Transaction.where("bucket_id in (?)",self.buckets)
+  end
 end

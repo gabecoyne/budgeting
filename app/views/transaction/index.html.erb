@@ -56,7 +56,10 @@
 			<% @no_bucket.each do |trans| -%>
 				<tr>
 					<td><strong><%= trans.label %></strong></td>
-					<td><%= trans.bucket.name %></td>
+					<td>
+						<%= select "transaction[#{trans.id}][bucket]", :id, @account.buckets.map{|b|[b.name,b.id]}, { :remote => true }, 
+								{ :onchange => "alert($(this).val())", "data-remote" => true } %>
+					</td>
 					<td><%= trans.notes %></td>
 					<td style="text-align:right"><%= money(trans.amount) %></td>
 					<td style="text-align:right"><em><%= trans.date.strftime("%m/%d/%Y") %></em></td>

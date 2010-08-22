@@ -15,7 +15,7 @@ class TransactionController < ApplicationController
     end
     params[:year] = Time.now.strftime("%Y") unless params[:year]
     params[:month] = Time.now.strftime("%m") unless params[:month]
-    @month = Transaction.where("bucket_id in (select id from buckets where account_id=?)",params[:account_id]).where("year(date)=?",params[:year]).where("month(date)=?",params[:month]).order("date desc")
+    @month = @account.transactions.where("year(date)=?",params[:year]).where("month(date)=?",params[:month])
     @no_bucket = @month.where("bucket_id=#{@account.buckets.find_by_name('NO BUCKET').id}")
     @pending = @month.where("status='pending'")
     @cleared = @month.where("status='cleared'")

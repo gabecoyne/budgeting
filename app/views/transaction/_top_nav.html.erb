@@ -1,8 +1,11 @@
-	<div class="drop">
+	<div class="drop" id="months">
 		<h2><%= Date.new(params[:year].to_i, params[:month].to_i).strftime("%B %Y") %></h2>
 		<ul>
-			<% @months.each do |month| -%>
-				<li>
+			<% @months.each_with_index do |month,i| -%>
+				<% if i == 6 %>
+					<li><%= link_to "+ More", "", :onmouseover => "$('#months li').show()" %></li>
+				<% end %>
+				<li <%= i >= 6 ? "style='display:none'" : "" %>>
 					<%= link_to "#{Date.new(month.year.to_i, month.month.to_i).strftime("%B %Y")}", 
 							transaction_month_path(
 				        :account_id => params[:account_id], :year => month.year, :month => month.month.rjust(2,"0")
