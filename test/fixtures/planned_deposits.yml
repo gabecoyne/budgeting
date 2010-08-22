@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  account_id: 1
+  bucket_id: 1
+  name: MyString
+  amount: 1.5
+  next: 2010-07-05
+  repeat: 1
+  repeat_type: MyString
+
+two:
+  account_id: 1
+  bucket_id: 1
+  name: MyString
+  amount: 1.5
+  next: 2010-07-05
+  repeat: 1
+  repeat_type: MyString

@@ -1,0 +1,63 @@
+<% content_for :nav_bar do %>
+	<div id="buttons">
+		<a class="add" onclick="$('#new_deposit_form').slideToggle()">New Scheduled <strong>Deposit</strong></a>
+		<a class="add" onclick="$('#new_bucket_form').slideToggle()">New Savings <strong>Bucket</strong></a>
+	</div>
+<% end %>
+
+<%= render "planned_deposit/form" %>
+<%= render "bucket/form" %>
+
+<table class="layout plan">
+	<tr>
+		<td style="vertical-align:top;border:none;">
+			<table>
+				<tr><td style="height:80px"><br /></td></tr>
+				<% @account.buckets.each do |bucket| -%>
+					<tr><td><strong><%= bucket.name %></strong></td></tr>
+				<% end %>
+				<tr><td style="height:51px"><%= submit_tag 'Save', :class => "submit" %></td></tr>
+			</table>
+		</td>
+		<% leftover = [] %>
+		<% @account.planned_deposits.order("next asc").each do |deposit| leftover[deposit.id] = deposit.amount %>
+		<td style="vertical-align:top;border:none;"> <!-- Deposit column -->
+			<table>
+				<tr>
+					<td style="height:80px">
+						<strong><%= deposit.name %></strong>
+						<h1><%= money(deposit.amount) %></h1>
+						Coming <%= deposit.next.strftime("%m/%d/%Y") %>
+						<%= link_to "[x] delete", account_planned_deposit_path({ :account_id => @account.id, :id => deposit.id }), :confirm => "Are you sure?", :method => :delete %>
+					</td>
+				</tr>
+				<% @account.buckets.each do |bucket|
+						# should probably move to the controller or model...
+						pb = deposit.planned_buckets.find_by_bucket_id(bucket.id)
+						if pb.nil?
+							pb = deposit.planned_buckets.new
+							pb.amount = 0
+							pb.bucket_id = bucket.id
+							pb.save
+						end 
+						leftover[deposit.id] -= pb.amount
+					%>
+					<tr>
+						<td>
+							<input type="text" 
+								name="planned_bucket[<%= deposit.id %>][<%= bucket.id %>]" 
+								id="plan_<%= deposit.id %>_<%= bucket.id %>" 
+								value="<%= pb.amount ? pb.amount : 0 %>" 
+							/>
+						</td>
+					</tr>
+				<% end -%>
+				<tr><td>Left Over:<h1><%= money(leftover[deposit.id]) %></h1></td></tr>
+			</table>
+		</td>
+		<% end %>
+	</tr>
+</table>
+<% if @account.planned_deposits.nil? %>
+	you have no plans...
+<% end %>

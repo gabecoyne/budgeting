@@ -1,0 +1,15 @@
+<% form_for @planned_deposit, :as => :planned_deposit, :url => { :controller => "planned_deposit", :action => "create" }, 
+	 :html => {:id => "new_deposit_form", :style => "display:none"}  do |f| %>
+	<div><label>Name</label><%= f.text_field :name %></div>
+	<div><label>Amount</label><%= f.text_field :amount, :style => "width:50px" %></div>
+	<div><label>Start Date</label><%= f.text_field :next, :class => "date" %></div>
+	<div><label>Repeat Every</label>
+		<%= f.text_field :repeat, :style => "width:50px" %> 
+		<%= f.select :repeat_type, ["months","weeks","days"] %></div>
+																	
+	<%= f.hidden_field :account_id, :value => @account.id %>	
+	<div><label>&nbsp;</label><%= submit_tag 'Save', :class => "submit" %></div>     
+	<br class="clear" /><br />
+	* This will create a scheduled deposit and let you set bucket disbursements according to that schedule.
+	
+<% end %>

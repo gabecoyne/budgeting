@@ -1,0 +1,19 @@
+<% if flash[:message] %><div class="flash"><%= flash[:message].html_safe %></div><% end %>
+<% form_for :account, nil, :url => { :action => "activate" }, :html => {:id => "bulk_account_form"}  do |f| %>
+	<table>
+		<thead>
+			<th>Account</th>
+			<th>Active?</th>
+		</thead>
+	<% @accounts.each do |account| -%>
+		<tr>
+			<td><%= account.name %></td>
+			<td>
+				<input name="accounts[<%= account.id %>][active]" value="1" type="checkbox" <%= account.active? ? "checked" : "" %> />
+			</td>
+		</tr>
+	<% end -%>
+	</table>
+	<br />
+	<%= submit_tag 'Save', :class => "submit" %>
+<% end %>

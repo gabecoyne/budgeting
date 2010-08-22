@@ -1,0 +1,120 @@
+<% content_for :nav_bar do %>
+	<%= render "top_nav" %>
+<% end %>
+
+<%= render "form" %>
+
+<ul id="summaries">
+	<li class="<%= num_class(@month_income_total) %>">total income <strong><%= money(@month_income_total) %></strong></li>
+	<li class="<%= num_class(@month_expense_total) %>">total spent <strong><%= money(@month_expense_total) %></strong></li>
+	<li class="<%= num_class(@month_total) %>">cash flow <strong><%= money(@month_total) %></strong></li>
+	<li class="<%= num_class(@available_balance) %> last">available balance <strong><%= money(@available_balance) %></strong></li>
+</ul>
+
+<div id="content_right">
+	
+	<h2 class="header">
+		<a onclick="$('form#new_bucket_form').slideToggle()" class="floatRight" style="margin:-5px; margin-left:10px"><%= image_tag "plus.png" %></a>
+		<span class="floatRight"><%= money(@bucket_total) %></span>
+		Buckets
+	</h2>
+	<%= render "bucket/form" %>
+	<table>
+		<% @account.buckets.each do |bucket| -%>
+			<% if bucket.name != "NO BUCKET" -%>
+			<tr>
+				<td><strong><%= bucket.name %></strong></td>
+				<td style="text-align:right"><%= money(bucket.balance) %></td>
+					<td style="text-align:right">
+						<%= link_to "delete", 
+								{ :controller => "bucket", :action => "destroy", :id => bucket.id }, 
+								:confirm => "Are you sure?", :method => :delete %>
+					</td>
+			</tr>
+			<% end -%>
+		<% end -%>
+	</table>
+	
+</div>
+
+<div id="content_left">
+	
+	<h2 class="header">
+		<span class="expand"><%= link_to image_tag("expand.png"), "#", :onclick => "$('#no_bucket').slideToggle()" %></span>
+		<span class="floatRight"><%= money(@no_bucket_total) %></span>
+		No Bucket
+	</h2>
+	<div id="no_bucket" style="display:none">		
+		<table>
+			<thead>
+				<th>Label</th>
+				<th>Bucket</th>
+				<th>Notes</th>
+				<th style="text-align:right">Amount</th>
+				<th style="text-align:right">Date</th>
+			</thead>
+			<% @no_bucket.each do |trans| -%>
+				<tr>
+					<td><strong><%= trans.label %></strong></td>
+					<td><%= trans.bucket.name %></td>
+					<td><%= trans.notes %></td>
+					<td style="text-align:right"><%= money(trans.amount) %></td>
+					<td style="text-align:right"><em><%= trans.date.strftime("%m/%d/%Y") %></em></td>
+				</tr>
+			<% end -%>
+		</table>
+	</div>
+	
+	<h2 class="header">
+		<span class="expand"><%= link_to image_tag("expand.png"), "#", :onclick => "$('#pending').slideToggle()" %></span>
+		<span class="floatRight"><%= money(@pending_total) %></span>
+		Pending
+	</h2>
+	<div id="pending" style="display:none">		
+		<table>
+			<thead>
+				<th>Label</th>
+				<th>Bucket</th>
+				<th>Notes</th>
+				<th style="text-align:right">Amount</th>
+				<th style="text-align:right">Date</th>
+			</thead>
+			<% @pending.each do |trans| -%>
+				<tr>
+					<td><strong><%= trans.label %></strong></td>
+					<td><%= trans.bucket.name %></td>
+					<td><%= trans.notes %></td>
+					<td style="text-align:right"><%= money(trans.amount) %></td>
+					<td style="text-align:right"><em><%= trans.date.strftime("%m/%d/%Y") %></em></td>
+				</tr>
+			<% end -%>
+		</table>
+	</div>
+	
+	<h2 class="header">
+		<span class="expand"><%= link_to image_tag("expand.png"), "#", :onclick => "$('#cleared').slideToggle()" %></span>
+		<span class="floatRight"><%= money(@cleared_total) %></span>
+		Cleared
+	</h2>
+	<div id="cleared">		
+		<table>
+			<thead>
+				<th>Label</th>
+				<th>Bucket</th>
+				<th>Notes</th>
+				<th style="text-align:right">Amount</th>
+				<th style="text-align:right">Date</th>
+			</thead>
+			<% @cleared.each do |trans| -%>
+				<tr>
+					<td><strong><%= trans.label %></strong></td>
+					<td><%= trans.bucket.name %></td>
+					<td><%= trans.notes %></td>
+					<td style="text-align:right"><%= money(trans.amount) %></td>
+					<td style="text-align:right"><em><%= trans.date.strftime("%m/%d/%Y") %></em></td>
+				</tr>
+			<% end -%>
+		</table>
+	</div>
+	
+</div>

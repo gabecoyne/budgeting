@@ -1,0 +1,31 @@
+<% if flash[:message] %><div class="flash"><%= flash[:message] %></div><% end %>
+<% if flash[:error] %><div class="flash"><%= flash[:error] %></div><% end %>
+
+<%= form_tag :action => 'process_login', :id => "login" do %>
+	<div>
+		<label>Username:</label>
+		<%= text_field "user", "username" %>&#x00A;
+	</div>
+	<div>
+		<label>Password:</label>
+		<%= password_field "user", "password" %>&#x00A;
+	</div>
+	<br class="clear" /><br />
+  <%= submit_tag "Login", :class => "submit" %> 
+	<br /><br />
+	You will need a <a href="http://mint.com" target="_blank">mint.com</a> account.
+	<script type="text/javascript" charset="utf-8">
+		$("#login").submit(function(){
+			$("input.submit").val("Logging In...")
+			$("#status").fadeIn()
+		})
+	</script>
+<% end %>
+
+<br />
+<div id="status" style="display:none">
+	<strong>Please be patient.</strong>
+	<br />
+	Login may take a while as we will be downloading your <strong>Mint.com</strong> data now. 
+	Thanks.
+</div>

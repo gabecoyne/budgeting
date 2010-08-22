@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Budget</title>
+  <%= stylesheet_link_tag "standardize", "layout" %>
+  <%= javascript_include_tag "jquery-1.4.2.min", "rails", "application" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+
+		<div id="login">
+			<div id="logo">budgeting</div>
+			<%= yield %>
+		</div>
+
+</body>
+</html>

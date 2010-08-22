@@ -1,0 +1,9 @@
+<% form_for nil, :as => :transaction, :url => { :action => "create" }, 
+	 :html => {:id => "new_transaction_form", :style => "display:none"}  do |f| %>
+	<div><label>Bucket</label><%= select("transaction", "bucket_id", @account.buckets.collect {|b| [ b.name, b.id ] }) %></div>
+	<div><label>Notes</label><%= f.text_field :notes %></div>
+	<div><label>Amount</label><%= f.text_field :amount %></div>
+	<%= f.hidden_field :status, :value => "pending" %>
+	<div><label>&nbsp;</label><%= submit_tag 'Create', :class => "submit" %></div> 
+	<br class="clear" />
+<% end %>

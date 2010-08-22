@@ -1,0 +1,19 @@
+	<div class="drop">
+		<h2><%= Date.new(params[:year].to_i, params[:month].to_i).strftime("%B %Y") %></h2>
+		<ul>
+			<% @months.each do |month| -%>
+				<li>
+					<%= link_to "#{Date.new(month.year.to_i, month.month.to_i).strftime("%B %Y")}", 
+							transaction_month_path(
+				        :account_id => params[:account_id], :year => month.year, :month => month.month.rjust(2,"0")
+				      ) %>
+				</li>
+			<% end -%>
+		</ul>
+	</div>	
+	
+	<div id="buttons">
+		<%= link_to "Import Transactions <strong>from Mint.com</strong>".html_safe,
+		 		{:controller => "user", :action => "import", :account_id => params[:account_id] }, :class => "import" %>
+		<a href="#" class="add" onclick="$('#new_transaction_form').slideToggle()">New Pending <strong>Transaction</strong></a>
+	</div>

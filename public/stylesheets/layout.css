@@ -1,0 +1,266 @@
+h1,h2,h3{
+	font-weight: bold;
+}
+h2.header{
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	background: #ccc;
+	color: #666;
+	margin: 10px 0;
+	padding: 10px;
+}
+a{
+	color: #060;
+}
+#container{
+	margin: 0px auto;
+	width: 1000px;
+}
+#logo{
+	font-family: "Georgia", "Times", serif;
+	font-style: italic;
+	font-size: 4em;
+	line-height: 1em;
+	font-weight: bold;
+}
+div.drop{
+	background: #666 url(/images/arrow_down.png) no-repeat 310px 18px;
+	width: 320px;
+	color: #fff;
+	padding: 10px;
+	float: left;
+	margin-right: 10px;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	cursor: pointer;
+}
+div.drop ul{
+	display: none;
+}
+div.drop:hover ul{
+	display: block;
+	position: absolute;
+	z-index: 1;
+	padding: 10px;
+	margin-left: -10px;
+	width: 320px;
+	background: #666;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+div.drop:hover ul a{
+	color: #fff;
+	text-decoration: none;
+	display: block;
+	padding: 3px 10px;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+div.drop:hover ul a:hover{
+	background: #555;
+}
+#header{
+	margin-top: 20px;
+}
+#header ul{
+	float: right;
+}
+#header ul li{
+	float: left;
+	margin-right: 5px;
+}
+#header ul li a{
+	display: block;
+	padding: 10px 20px;
+	background: #ccc;
+	color: #666;
+	text-decoration: none;
+}
+#header ul li a:hover{
+	background: #999;
+	color: #fff;
+}
+#header ul li a.selected{
+	padding-bottom: 15px;
+	color: #fff;
+	background: #999;
+}
+#header ul li a strong{
+	display: block;
+	font-size: 2em;
+	line-height: 1em;
+	font-family: "Georgia", "Times", serif;
+	font-style: italic;
+}
+#nav_bar{
+	padding: 10px;
+	clear: both;
+	background: #999;
+	overflow: auto;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+}
+#content_right{
+	float: right;
+	width: 290px;
+}
+#content_left{
+	float: left;
+	width: 700px;
+}
+table{
+	width: 100%;
+}
+table td, table th{
+	border-bottom: 1px solid #ccc;
+	padding: 3px;
+}
+table tr:hover td{
+	background: #eee;
+}
+table.layout tr:hover td{
+	background: none;
+}
+table th{
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.neg{
+	color: #900;
+}
+.pos{
+	color: #060;
+}
+ul#summaries{
+	overflow: auto;
+	margin-top: 10px;
+}
+ul#summaries li{
+	float: left;
+	width: 207px;
+	margin-right: 10px;
+	float: left;
+	padding: 10px;
+	padding-top: 5px;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	text-align: center;
+	background: #ccc url() no-repeat;
+	color: #fff;
+}
+ul#summaries li.last{
+	margin-right: 0px;
+	width: 268px;
+}
+ul#summaries li.last.pos, ul#summaries li.last.pos span.pos {
+	background: #060;
+	color: #fff;
+}
+ul#summaries li.last.neg, ul#summaries li.last.neg span.neg{
+	background: #900;
+	color: #fff;
+}
+ul#summaries li strong{
+	display: block;
+	font-size: 2em;
+	line-height: 1em;
+}
+.expand{
+	float: right;
+	margin-left: 20px;
+}
+#buttons{
+	margin-top: 2px;
+}
+#buttons a{
+	display: block;
+	float: left;
+	width: 100px;
+	color: #fff;
+	text-decoration: none;
+	font-size: .9em;
+	padding-left: 35px;
+	line-height: 1.3em;
+	height: 37px;
+	padding-top: 4px;
+}
+#buttons a:hover{
+	color: #333;
+}
+#buttons a strong{
+	display: block;
+	font-size: 1.3em;
+}
+#buttons a.import{
+	background: url(/images/download.png) no-repeat 0px 3px;
+	margin-right: 10px;
+}
+#buttons a.add{
+	background: url(/images/plus.png) no-repeat 0px 3px;
+}
+form{
+	display: block;
+	padding: 20px;
+	margin-top: 10px;
+	border: 3px solid #ccc;
+}
+form div{
+	float: left;
+	margin-right: 20px;
+}
+form div label{
+	display: block;
+	font-weight: bold;
+}
+input.submit{
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	background: #060;
+	color: #fff;
+	border: none;
+	padding: 5px 20px;
+	font-weight: bold;
+	cursor: pointer;
+}
+input.submit:hover{
+	background: #333;
+}
+#login{
+	width: 300px;
+	margin: 200px auto;
+}
+#login #logo{
+	text-align: center;
+}
+a#logout{
+	text-decoration: none;
+	color: #000;
+	text-transform: uppercase;
+	font-size: .8em;
+	float: left;
+}
+a#logout:hover{
+	text-decoration: underline;
+}
+.flash{
+	text-align: center;
+	background: #900;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	font-weight: bold;
+	margin-top: 10px;
+}
+a.dark{
+	background: #555;
+}
+table.plan td{
+	height: 25px;
+	vertical-align: middle;
+}
+table.plan input{
+	border: none;
+}
